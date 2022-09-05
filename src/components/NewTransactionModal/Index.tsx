@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import Modal from 'react-modal';
 import closeImg from '../../assets/close.svg';
 import incomingImg from '../../assets/in.svg';
@@ -16,6 +16,9 @@ type TransactionType = 'deposit' | 'withdraw';
 
 export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionModalProps) {
   const [type, setType] = useState<TransactionType>('deposit');
+  const [title, setTitle] = useState('');
+  const [value, setValue] = useState(0);
+  const [category, setCategory] = useState('');
 
   function handleDepositClick() {
     setType('deposit');
@@ -23,6 +26,22 @@ export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionMod
 
   function handleWithdrawClick() {
     setType('withdraw');
+  }
+
+  function handleTitleChange(e: ChangeEvent<HTMLInputElement>) {
+    setTitle(e.target.value);
+  }
+
+  function handleValueChange(e: ChangeEvent<HTMLInputElement>) {
+    setValue(Number(e.target.value));
+  }
+
+  function handleCategoryChange(e: ChangeEvent<HTMLInputElement>) {
+    setCategory(e.target.value);
+  }
+
+  function handleCreateTransaction(event: FormEvent) {
+    event.preventDefault();
   }
 
   return (
@@ -43,14 +62,20 @@ export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionMod
         />
       </button>
 
-      <Container>
+      <Container onSubmit={handleCreateTransaction}>
         <h2>New transaction</h2>
 
-        <input placeholder={'Title'} />
+        <input
+          placeholder={'Title'}
+          value={title}
+          onChange={handleTitleChange}
+        />
 
         <input
           type={'number'}
           placeholder={'Amount'}
+          value={value}
+          onChange={handleValueChange}
         />
 
         <TransactionTypeContainer>
@@ -81,7 +106,11 @@ export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionMod
           </RadioBox>
         </TransactionTypeContainer>
 
-        <input placeholder={'Type'} />
+        <input
+          placeholder={'Type'}
+          value={category}
+          onChange={handleCategoryChange}
+        />
 
         <button type={'submit'}>Register</button>
       </Container>
