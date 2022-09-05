@@ -58,6 +58,7 @@ export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionMod
             type={'button'}
             onClick={handleDepositClick}
             isActive={type === 'deposit'}
+            activeColor={'green'}
           >
             <img
               src={incomingImg}
@@ -70,6 +71,7 @@ export function NewTransactionModal({ isOpen, onRequesClose }: NewTransactionMod
             type={'button'}
             onClick={handleWithdrawClick}
             isActive={type === 'withdraw'}
+            activeColor={'red'}
           >
             <img
               src={outgoingImg}
