@@ -33,7 +33,7 @@ createServer({
           value: 250,
           type: 'withdraw',
           category: 'Games',
-          createdAt: new Date('31-10-2015 00:00:00'),
+          createdAt: new Date('10-31-2015 06:06:06'),
         },
       ],
     });
