@@ -1,4 +1,4 @@
-#Personal Accountant Web APP
+# Personal Accountant Web APP
 Written in React Typescript this is the second lessson in the Ignite course from Rocketseat.
 Stylization uses stylized components.
 
